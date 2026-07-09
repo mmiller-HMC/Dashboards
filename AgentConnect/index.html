@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LEADValet: Agent Connect — Dialer Results | Feb–Jun 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #F7F5FB; font-family: 'DM Sans', sans-serif; color: #1a1a1a; padding: 2rem; min-height: 100vh; }
+    .dash { max-width: 760px; margin: 0 auto; background: #fff; border-radius: 16px; padding: 2rem 2.25rem; box-shadow: 0 1px 4px rgba(75,46,131,0.08); }
+    .header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 1.75rem; flex-wrap: wrap; gap: 8px; }
+    .header-left h1 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 600; margin: 0 0 4px; color: #4B2E83; }
+    .header-left p { font-size: 12px; color: #6b6b6b; margin: 0; letter-spacing: 0.04em; text-transform: uppercase; }
+    .badge { background: #F3EEF9; color: #4B2E83; font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 20px; white-space: nowrap; }
+    .kpi-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; margin-bottom: 1.5rem; }
+    .kpi { background: #F7F5FB; border-radius: 10px; padding: 14px 16px; }
+    .kpi-label { font-size: 11px; color: #6b6b6b; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+    .kpi-val { font-size: 26px; font-weight: 500; line-height: 1; }
+    .kpi-sub { font-size: 11px; color: #6b6b6b; margin-top: 5px; display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+    .kpi-calls .kpi-val  { color: #4B2E83; }
+    .kpi-convos .kpi-val { color: #7B4FBF; }
+    .kpi-book .kpi-val   { color: #8B6914; }
+    .chart-card { background: #fff; border: 0.5px solid rgba(0,0,0,0.12); border-radius: 12px; padding: 20px 24px; margin-bottom: 14px; }
+    .chart-title { font-size: 13px; font-weight: 500; margin-bottom: 16px; color: #1a1a1a; }
+    .funnel-row { display: flex; flex-direction: column; gap: 10px; }
+    .funnel-step { display: flex; align-items: center; gap: 12px; }
+    .funnel-label { font-size: 12px; color: #6b6b6b; width: 100px; flex-shrink: 0; }
+    .funnel-bar-wrap { flex: 1; }
+    .funnel-bar { height: 26px; border-radius: 4px; display: flex; align-items: center; padding-left: 10px; font-size: 12px; font-weight: 500; color: #fff; }
+    .funnel-pct { font-size: 11px; color: #6b6b6b; width: 115px; text-align: right; flex-shrink: 0; display: flex; align-items: center; justify-content: flex-end; gap: 5px; }
+    .section-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em; color: #6b6b6b; font-weight: 500; margin-bottom: 10px; }
+    @media (max-width: 600px) {
+      body { padding: 1rem; }
+      .dash { padding: 1.25rem; }
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+      .funnel-pct { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="dash">
+    <div class="header">
+      <div class="header-left">
+        <h1>LEADValet: Agent Connect — Dialer Results</h1>
+        <p>Feb–Apr 2026 &nbsp;·&nbsp; Outreach program performance</p>
+      </div>
+      <div class="badge">8 loan officers &nbsp;·&nbsp; Program active</div>
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi kpi-calls">
+        <div class="kpi-label">Total calls</div>
+        <div class="kpi-val">4,336</div>
+        <div class="kpi-sub">across 8 loan officers</div>
+      </div>
+      <div class="kpi kpi-convos">
+        <div class="kpi-label">Conversations</div>
+        <div class="kpi-val">381</div>
+        <div class="kpi-sub">8.8% connect rate</div>
+      </div>
+      <div class="kpi kpi-book">
+        <div class="kpi-label">Bookings</div>
+        <div class="kpi-val">199</div>
+        <div class="kpi-sub">52.2% of conversations</div>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-title">Program funnel — totals</div>
+      <div class="funnel-row">
+        <div class="funnel-step">
+          <div class="funnel-label">Calls dialed</div>
+          <div class="funnel-bar-wrap">
+            <div class="funnel-bar" style="width:100%; background:#4B2E83;">4,336</div>
+          </div>
+          <div class="funnel-pct">100%</div>
+        </div>
+        <div class="funnel-step">
+          <div class="funnel-label">Conversations</div>
+          <div class="funnel-bar-wrap">
+            <div class="funnel-bar" style="width:8.8%; background:#7B4FBF; min-width:44px;">381</div>
+          </div>
+          <div class="funnel-pct">8.8% of calls</div>
+        </div>
+        <div class="funnel-step">
+          <div class="funnel-label">Bookings</div>
+          <div class="funnel-bar-wrap">
+            <div class="funnel-bar" style="width:4.6%; background:#C49A1A; min-width:40px;">199</div>
+          </div>
+          <div class="funnel-pct">52.2% of convos</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label">Key Takeaways</div>
+    <div style="display:flex; flex-direction:column; gap:10px;">
+
+      <div style="display:flex; gap:12px; align-items:flex-start; background:#F7F5FB; border-radius:10px; padding:14px 16px;">
+        <div style="width:30px; height:30px; border-radius:50%; background:#EDE8F5; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4B2E83" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div>
+          <div style="font-size:13px; font-weight:500; color:#1a1a1a; margin-bottom:3px;">Strong booking conversion.</div>
+          <div style="font-size:12px; color:#4b4b4b; line-height:1.6;">52% of conversations resulted in a booked appointment, demonstrating that the dialer's script and offer are resonating with agents once contact is made.</div>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:12px; align-items:flex-start; background:#F7F5FB; border-radius:10px; padding:14px 16px;">
+        <div style="width:30px; height:30px; border-radius:50%; background:#EDE8F5; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4B2E83" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div>
+          <div style="font-size:13px; font-weight:500; color:#1a1a1a; margin-bottom:3px;">Connect rate remains the biggest lever.</div>
+          <div style="font-size:12px; color:#4b4b4b; line-height:1.6;">The 8.8% call-to-conversation rate, while respectable, still represents the sharpest drop in the funnel. Improving first contact through adjustments to timing, caller ID, or scripting could yield significant gains.</div>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:12px; align-items:flex-start; background:#F7F5FB; border-radius:10px; padding:14px 16px;">
+        <div style="width:30px; height:30px; border-radius:50%; background:#EDE8F5; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4B2E83" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+        </div>
+        <div>
+          <div style="font-size:13px; font-weight:500; color:#1a1a1a; margin-bottom:3px;">Consistent upward trend in volume.</div>
+          <div style="font-size:12px; color:#4b4b4b; line-height:1.6;">The 4,336 calls this period reflect continued growth in outreach, bringing more agents into the funnel each month.</div>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:12px; align-items:flex-start; background:#F7F5FB; border-radius:10px; padding:14px 16px;">
+        <div style="width:30px; height:30px; border-radius:50%; background:#EDE8F5; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4B2E83" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <div>
+          <div style="font-size:13px; font-weight:500; color:#1a1a1a; margin-bottom:3px;">Full-quarter participation coming into view.</div>
+          <div style="font-size:12px; color:#4b4b4b; line-height:1.6;">With the addition of Tony mid-quarter and only one LO still on pause, the program is approaching a true full-participation period to serve as a performance baseline.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
