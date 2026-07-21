@@ -8,7 +8,7 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: #F7F5FB; font-family: 'DM Sans', sans-serif; color: #1a1a1a; padding: 2rem; min-height: 100vh; }
-    .dash { max-width: 760px; margin: 0 auto; background: #fff; border-radius: 16px; padding: 2rem 2.25rem; box-shadow: 0 1px 4px rgba(75,46,131,0.08); }
+    .dash { max-width: 960px; margin: 0 auto; background: #fff; border-radius: 16px; padding: 2rem 2.25rem; box-shadow: 0 1px 4px rgba(75,46,131,0.08); }
     .header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 1.75rem; flex-wrap: wrap; gap: 8px; }
     .header-left h1 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 600; margin: 0 0 4px; color: #4B2E83; }
     .header-left p { font-size: 12px; color: #6b6b6b; margin: 0; letter-spacing: 0.04em; text-transform: uppercase; }
@@ -17,24 +17,44 @@
     .kpi { background: #F7F5FB; border-radius: 10px; padding: 14px 16px; }
     .kpi-label { font-size: 11px; color: #6b6b6b; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
     .kpi-val { font-size: 26px; font-weight: 500; line-height: 1; }
-    .kpi-sub { font-size: 11px; color: #6b6b6b; margin-top: 5px; display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
-    .kpi-calls .kpi-val  { color: #4B2E83; }
-    .kpi-convos .kpi-val { color: #7B4FBF; }
-    .kpi-book .kpi-val   { color: #8B6914; }
-    .chart-card { background: #fff; border: 0.5px solid rgba(0,0,0,0.12); border-radius: 12px; padding: 20px 24px; margin-bottom: 14px; }
-    .chart-title { font-size: 13px; font-weight: 500; margin-bottom: 16px; color: #1a1a1a; }
-    .funnel-row { display: flex; flex-direction: column; gap: 10px; }
-    .funnel-step { display: flex; align-items: center; gap: 12px; }
-    .funnel-label { font-size: 12px; color: #6b6b6b; width: 100px; flex-shrink: 0; }
-    .funnel-bar-wrap { flex: 1; }
-    .funnel-bar { height: 26px; border-radius: 4px; display: flex; align-items: center; padding-left: 10px; font-size: 12px; font-weight: 500; color: #fff; }
-    .funnel-pct { font-size: 11px; color: #6b6b6b; width: 115px; text-align: right; flex-shrink: 0; display: flex; align-items: center; justify-content: flex-end; gap: 5px; }
+    .kpi-sub { font-size: 11px; color: #6b6b6b; margin-top: 4px; }
+    .kpi-purple .kpi-val { color: #4B2E83; }
+    .kpi-gold .kpi-val { color: #8B6914; }
+    .kpi-teal .kpi-val { color: #0F6E56; }
+    .kpi-coral .kpi-val { color: #993C1D; }
     .section-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em; color: #6b6b6b; font-weight: 500; margin-bottom: 10px; }
-    @media (max-width: 600px) {
+    .charts-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 1.5rem; }
+    .chart-card { background: #fff; border: 0.5px solid rgba(0,0,0,0.12); border-radius: 12px; padding: 16px; }
+    .chart-title { font-size: 13px; font-weight: 500; margin-bottom: 12px; color: #1a1a1a; }
+    .funnel-row { display: flex; flex-direction: column; gap: 8px; }
+    .funnel-step { display: flex; align-items: center; gap: 10px; }
+    .funnel-label { font-size: 12px; color: #6b6b6b; width: 90px; flex-shrink: 0; }
+    .funnel-bar-wrap { flex: 1; }
+    .funnel-bar { height: 22px; border-radius: 4px; display: flex; align-items: center; padding-left: 8px; font-size: 11px; font-weight: 500; color: #fff; }
+    .legend-row { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 10px; }
+    .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #6b6b6b; }
+    .leg-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .agent-table { width: 100%; border-radius: 12px; border: 0.5px solid rgba(0,0,0,0.12); overflow: hidden; background: #fff; }
+    .agent-table table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .agent-table th { background: #4B2E83; color: #fff; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; padding: 10px 14px; text-align: left; }
+    .agent-table th.right { text-align: right; }
+    .agent-table td { padding: 10px 14px; border-bottom: 0.5px solid rgba(0,0,0,0.08); vertical-align: middle; }
+    .agent-table td.right { text-align: right; }
+    .agent-table tr:last-child td { border-bottom: none; }
+    .agent-table tr.total-row td { background: #F3EEF9; font-weight: 500; color: #4B2E83; }
+    .agent-name { font-weight: 500; font-size: 13px; }
+    .note { font-size: 10px; color: #6b6b6b; font-style: italic; }
+    .bar-bg { background: #EDE8F5; border-radius: 4px; height: 6px; width: 100%; }
+    .bar-fill { background: #4B2E83; border-radius: 4px; height: 6px; }
+    .bar-fill-gold { background: #C49A1A; border-radius: 4px; height: 6px; }
+    .bar-fill-teal { background: #0F6E56; border-radius: 4px; height: 6px; }
+    .rate-cell { display: flex; flex-direction: column; gap: 3px; }
+    .footnote { font-size: 11px; color: #6b6b6b; font-style: italic; margin-top: 14px; padding: 10px 14px; background: #F7F5FB; border-radius: 8px; }
+    @media (max-width: 640px) {
       body { padding: 1rem; }
       .dash { padding: 1.25rem; }
       .kpi-grid { grid-template-columns: repeat(2, 1fr); }
-      .funnel-pct { display: none; }
+      .charts-row { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -43,100 +63,175 @@
     <div class="header">
       <div class="header-left">
         <h1>LEADValet: Agent Connect — Dialer Results</h1>
-        <p>Feb–Apr 2026 &nbsp;·&nbsp; Outreach program performance</p>
+        <p>Feb–Jun 2026 &nbsp;·&nbsp; Outreach program performance</p>
       </div>
-      <div class="badge">8 loan officers &nbsp;·&nbsp; Program active</div>
+      <div class="badge">4 loan officers reporting &nbsp;·&nbsp; Program active</div>
     </div>
 
     <div class="kpi-grid">
-      <div class="kpi kpi-calls">
+      <div class="kpi kpi-purple">
         <div class="kpi-label">Total calls</div>
-        <div class="kpi-val">4,336</div>
-        <div class="kpi-sub">across 8 loan officers</div>
+        <div class="kpi-val">3,192</div>
+        <div class="kpi-sub">across 4 loan officers</div>
       </div>
-      <div class="kpi kpi-convos">
+      <div class="kpi kpi-gold">
         <div class="kpi-label">Conversations</div>
-        <div class="kpi-val">381</div>
-        <div class="kpi-sub">8.8% connect rate</div>
+        <div class="kpi-val">277</div>
+        <div class="kpi-sub">8.68% connect rate</div>
       </div>
-      <div class="kpi kpi-book">
+      <div class="kpi kpi-teal">
         <div class="kpi-label">Bookings</div>
-        <div class="kpi-val">199</div>
-        <div class="kpi-sub">52.2% of conversations</div>
+        <div class="kpi-val">144</div>
+        <div class="kpi-sub">51.99% of conversations</div>
+      </div>
+      <div class="kpi kpi-coral">
+        <div class="kpi-label">Meetings held</div>
+        <div class="kpi-val">48</div>
+        <div class="kpi-sub">33.3% of bookings</div>
       </div>
     </div>
 
-    <div class="chart-card">
-      <div class="chart-title">Program funnel — totals</div>
-      <div class="funnel-row">
-        <div class="funnel-step">
-          <div class="funnel-label">Calls dialed</div>
-          <div class="funnel-bar-wrap">
-            <div class="funnel-bar" style="width:100%; background:#4B2E83;">4,336</div>
+    <div class="charts-row">
+      <div class="chart-card">
+        <div class="chart-title">Program funnel — totals</div>
+        <div class="funnel-row">
+          <div class="funnel-step">
+            <div class="funnel-label">Calls dialed</div>
+            <div class="funnel-bar-wrap">
+              <div class="funnel-bar" style="width:100%; background:#4B2E83;">3,192</div>
+            </div>
           </div>
-          <div class="funnel-pct">100%</div>
+          <div class="funnel-step">
+            <div class="funnel-label">Conversations</div>
+            <div class="funnel-bar-wrap">
+              <div class="funnel-bar" style="width:8.68%; background:#7B4FBF; min-width:40px;">277</div>
+            </div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-label">Bookings</div>
+            <div class="funnel-bar-wrap">
+              <div class="funnel-bar" style="width:4.51%; background:#C49A1A; min-width:36px;">144</div>
+            </div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-label">Meetings held</div>
+            <div class="funnel-bar-wrap">
+              <div class="funnel-bar" style="width:1.5%; background:#0F6E56; min-width:32px;">48</div>
+            </div>
+          </div>
         </div>
-        <div class="funnel-step">
-          <div class="funnel-label">Conversations</div>
-          <div class="funnel-bar-wrap">
-            <div class="funnel-bar" style="width:8.8%; background:#7B4FBF; min-width:44px;">381</div>
-          </div>
-          <div class="funnel-pct">8.8% of calls</div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-title">Calls per LO</div>
+        <div style="position:relative; height:180px;">
+          <canvas id="callsChart"></canvas>
         </div>
-        <div class="funnel-step">
-          <div class="funnel-label">Bookings</div>
-          <div class="funnel-bar-wrap">
-            <div class="funnel-bar" style="width:4.6%; background:#C49A1A; min-width:40px;">199</div>
-          </div>
-          <div class="funnel-pct">52.2% of convos</div>
+        <div class="legend-row">
+          <div class="legend-item"><div class="leg-dot" style="background:#4B2E83;"></div> Calls</div>
+          <div class="legend-item"><div class="leg-dot" style="background:#7B4FBF;"></div> Conversations</div>
+          <div class="legend-item"><div class="leg-dot" style="background:#C49A1A;"></div> Bookings</div>
+          <div class="legend-item"><div class="leg-dot" style="background:#0F6E56;"></div> Meetings</div>
         </div>
       </div>
     </div>
 
-    <div class="section-label">Key Takeaways</div>
-    <div style="display:flex; flex-direction:column; gap:10px;">
-
-      <div style="display:flex; gap:12px; align-items:flex-start; background:#F7F5FB; border-radius:10px; padding:14px 16px;">
-        <div style="width:30px; height:30px; border-radius:50%; background:#EDE8F5; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4B2E83" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
-        <div>
-          <div style="font-size:13px; font-weight:500; color:#1a1a1a; margin-bottom:3px;">Strong booking conversion.</div>
-          <div style="font-size:12px; color:#4b4b4b; line-height:1.6;">52% of conversations resulted in a booked appointment, demonstrating that the dialer's script and offer are resonating with agents once contact is made.</div>
-        </div>
-      </div>
-
-      <div style="display:flex; gap:12px; align-items:flex-start; background:#F7F5FB; border-radius:10px; padding:14px 16px;">
-        <div style="width:30px; height:30px; border-radius:50%; background:#EDE8F5; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4B2E83" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        </div>
-        <div>
-          <div style="font-size:13px; font-weight:500; color:#1a1a1a; margin-bottom:3px;">Connect rate remains the biggest lever.</div>
-          <div style="font-size:12px; color:#4b4b4b; line-height:1.6;">The 8.8% call-to-conversation rate, while respectable, still represents the sharpest drop in the funnel. Improving first contact through adjustments to timing, caller ID, or scripting could yield significant gains.</div>
-        </div>
-      </div>
-
-      <div style="display:flex; gap:12px; align-items:flex-start; background:#F7F5FB; border-radius:10px; padding:14px 16px;">
-        <div style="width:30px; height:30px; border-radius:50%; background:#EDE8F5; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4B2E83" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        </div>
-        <div>
-          <div style="font-size:13px; font-weight:500; color:#1a1a1a; margin-bottom:3px;">Full-quarter participation coming into view.</div>
-          <div style="font-size:12px; color:#4b4b4b; line-height:1.6;">With the addition of Tony and Nick mid-quarter, the program continues to grow and demonstrate interest from Sales who are finding it useful.</div>
-        </div>
-      </div>
-
-      <div style="display:flex; gap:12px; align-items:flex-start; background:#F7F5FB; border-radius:10px; padding:14px 16px;">
-        <div style="width:30px; height:30px; border-radius:50%; background:#EDE8F5; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4B2E83" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        </div>
-        <div>
-          <div style="font-size:13px; font-weight:500; color:#1a1a1a; margin-bottom:3px;">Return on investment.</div>
-          <div style="font-size:12px; color:#4b4b4b; line-height:1.6;">Results are starting to come in, with LOs reporting "preferred lender" designations and referrals coming from new and reconnected partners.</div>
-        </div>
-      </div>
-
+    <div class="section-label">Loan officer breakdown</div>
+    <div class="agent-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Loan Officer</th>
+            <th class="right">Calls</th>
+            <th class="right">Convos</th>
+            <th>Connect rate</th>
+            <th class="right">Bookings</th>
+            <th>Booking rate</th>
+            <th class="right">Meetings</th>
+            <th>Booking &rarr; Meeting rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="agent-name">Juan</div></td>
+            <td class="right">565</td>
+            <td class="right">58</td>
+            <td><div class="rate-cell"><span style="font-size:12px;font-weight:500;">10.27%</span><div class="bar-bg"><div class="bar-fill" style="width:100%;"></div></div></div></td>
+            <td class="right">33</td>
+            <td><div class="rate-cell"><span style="font-size:12px;font-weight:500;">56.90%</span><div class="bar-bg"><div class="bar-fill-gold" style="width:57%;"></div></div></div></td>
+            <td class="right">11</td>
+            <td><div class="rate-cell"><span style="font-size:12px;font-weight:500;">33%</span><div class="bar-bg"><div class="bar-fill-teal" style="width:33%;"></div></div></div></td>
+          </tr>
+          <tr>
+            <td><div class="agent-name">Marty</div></td>
+            <td class="right">753</td>
+            <td class="right">80</td>
+            <td><div class="rate-cell"><span style="font-size:12px;font-weight:500;">10.62%</span><div class="bar-bg"><div class="bar-fill" style="width:100%;"></div></div></div></td>
+            <td class="right">39</td>
+            <td><div class="rate-cell"><span style="font-size:12px;font-weight:500;">48.75%</span><div class="bar-bg"><div class="bar-fill-gold" style="width:49%;"></div></div></div></td>
+            <td class="right">17</td>
+            <td><div class="rate-cell"><span style="font-size:12px;font-weight:500;">44%</span><div class="bar-bg"><div class="bar-fill-teal" style="width:44%;"></div></div></div></td>
+          </tr>
+          <tr>
+            <td><div class="agent-name">Otmane</div></td>
+            <td class="right">1,027</td>
+            <td class="right">78</td>
+            <td><div class="rate-cell"><span style="font-size:12px;font-weight:500;">7.59%</span><div class="bar-bg"><div class="bar-fill" style="width:76%;"></div></div></div></td>
+            <td class="right">40</td>
+            <td><div class="rate-cell"><span style="font-size:12px;font-weight:500;">51.28%</span><div class="bar-bg"><div class="bar-fill-gold" style="width:51%;"></div></div></div></td>
+            <td class="right">10</td>
+            <td><div class="rate-cell"><span style="font-size:12px;font-weight:500;">25%</span><div class="bar-bg"><div class="bar-fill-teal" style="width:25%;"></div></div></div></td>
+          </tr>
+          <tr>
+            <td><div class="agent-name">Torrey</div></td>
+            <td class="right">847</td>
+            <td class="right">61</td>
+            <td><div class="rate-cell"><span style="font-size:12px;font-weight:500;">7.20%</span><div class="bar-bg"><div class="bar-fill" style="width:72%;"></div></div></div></td>
+            <td class="right">32</td>
+            <td><div class="rate-cell"><span style="font-size:12px;font-weight:500;">52.46%</span><div class="bar-bg"><div class="bar-fill-gold" style="width:52%;"></div></div></div></td>
+            <td class="right">10</td>
+            <td><div class="rate-cell"><span style="font-size:12px;font-weight:500;">31%</span><div class="bar-bg"><div class="bar-fill-teal" style="width:31%;"></div></div></div></td>
+          </tr>
+          <tr class="total-row">
+            <td><div class="agent-name">TOTALS</div></td>
+            <td class="right">3,192</td>
+            <td class="right">277</td>
+            <td><span style="font-size:12px;">8.68%</span></td>
+            <td class="right">144</td>
+            <td><span style="font-size:12px;">51.99%</span></td>
+            <td class="right">48</td>
+            <td><span style="font-size:12px;">33%</span></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+
+    <div class="footnote">Note: Not enough data yet on Nick or Tony to include them in this breakdown. Stephanie has been removed from the program for now.</div>
   </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+  <script>
+    new Chart(document.getElementById('callsChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Juan', 'Marty', 'Otmane', 'Torrey'],
+        datasets: [
+          { label: 'Calls', data: [565, 753, 1027, 847], backgroundColor: '#4B2E83' },
+          { label: 'Conversations', data: [58, 80, 78, 61], backgroundColor: '#7B4FBF' },
+          { label: 'Bookings', data: [33, 39, 40, 32], backgroundColor: '#C49A1A' },
+          { label: 'Meetings', data: [11, 17, 10, 10], backgroundColor: '#0F6E56' }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false }, tooltip: { mode: 'index' } },
+        scales: {
+          x: { grid: { display: false }, ticks: { font: { size: 11 }, color: '#888' } },
+          y: { grid: { color: 'rgba(0,0,0,0.08)' }, ticks: { font: { size: 11 }, color: '#888' } }
+        }
+      }
+    });
+  </script>
 </body>
 </html>
